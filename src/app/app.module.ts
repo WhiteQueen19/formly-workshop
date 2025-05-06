@@ -12,9 +12,11 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatSelectModule } from '@angular/material/select'
+import { FormlyFieldTextArea } from './types/text-area.type'
+
 
 @NgModule({
-  declarations: [AppComponent, FormlyFieldStepper],
+  declarations: [AppComponent, FormlyFieldStepper, FormlyFieldTextArea],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -39,4 +41,4 @@ import { MatSelectModule } from '@angular/material/select'
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

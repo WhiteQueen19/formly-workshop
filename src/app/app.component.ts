@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     { value: 'es', viewValue: 'Es' },
   ]
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) { }
 
   form = new FormGroup({})
   model: any = {}
@@ -38,8 +38,30 @@ export class AppComponent implements OnInit {
         {
           props: { label: 'Detail' },
           fieldGroup: [
-            //Configura aqui la seccion 2
-          ],
+            {
+              key: 'title',
+              type: 'input',
+              props: {
+                label: 'Title',
+                required: true,
+                validators: [{ name: 'title', validation: lengthValidator }]
+              },
+              hooks: {
+              }
+            },
+            {
+              key: 'description',
+              type: 'customTextarea',
+              props: {
+                label: 'Bug description',
+                required: true,
+                validators: [{ name: 'title', validation: lengthValidator }]
+              },
+              hooks: {
+              }
+            },
+
+          ]
         },
         {
           props: { label: 'Entorno' },
@@ -80,11 +102,16 @@ export class AppComponent implements OnInit {
 
   private _printFormValues() {
     this.form.valueChanges.subscribe((formValues) => {
-      this.formValuesJson = JSON.stringify(formValues, null, 2) 
+      this.formValuesJson = JSON.stringify(formValues, null, 2)
     })
   }
 
+
   submit() {
     alert(JSON.stringify(this.model))
+
   }
+}
+export function lengthValidator(control: AbstractControl) {
+  return control.value.length >= 3
 }
