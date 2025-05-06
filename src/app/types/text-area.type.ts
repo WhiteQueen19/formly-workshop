@@ -2,46 +2,9 @@ import { Component } from '@angular/core'
 import { FieldType, FormlyFieldConfig } from '@ngx-formly/core'
 
 @Component({
-  selector: 'formly-field-stepper',
+  selector: 'formly-field-customTextarea',
   template: `
-    <mat-stepper linear #stepper>
-      <mat-step
-        *ngFor="
-          let step of field.fieldGroup;
-          let index = index;
-          let last = last
-        "
-      >
-        <ng-template matStepLabel>{{ step?.props?.label }}</ng-template>
-        <formly-field [field]="step"></formly-field>
-        <div>
-          <button
-            matStepperPrevious
-            *ngIf="index !== 0"
-            class="btn btn-primary"
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            matStepperNext
-            *ngIf="!last"
-            class="btn btn-primary"
-            type="button"
-          >
-            Next
-          </button>
-          <button
-            *ngIf="last"
-            class="btn btn-primary"
-            [disabled]="!form.valid"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
-      </mat-step>
-    </mat-stepper>
+    <mat-form-field #customTextarea class="example-full-width"><mat-label>Bug description</mat-label><textarea matInput></textarea></mat-form-field>
   `,
 })
 
@@ -59,3 +22,4 @@ export class FormlyFieldTextArea extends FieldType {
       : true
   }
 }
+

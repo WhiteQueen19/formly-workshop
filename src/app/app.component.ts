@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
               props: {
                 label: 'Title',
                 required: true,
-                validators: [{ name: 'title', validation: lengthValidator }]
+                minLength: 3
               },
               hooks: {
               }
@@ -54,11 +54,12 @@ export class AppComponent implements OnInit {
               type: 'customTextarea',
               props: {
                 label: 'Bug description',
-                required: true,
-                validators: [{ name: 'title', validation: lengthValidator }]
+                required: false,
+                minLength: 50,
               },
-              hooks: {
-              }
+              // validationMessages: [
+              //   {name: 'length', message: 'Se requiere al menos 50 caracteres'}
+              // ]
             },
 
           ]

@@ -35,7 +35,8 @@ import { FormlyFieldTextArea } from './types/text-area.type'
 
     FormlyModule.forRoot({
       /* Añade aqui todos los modulos que necesites */
-      types: [{ name: 'stepper', component: FormlyFieldStepper, wrappers: [] }],
+      types: [{ name: 'stepper', component: FormlyFieldStepper, wrappers: [] },
+      { name: 'customTextarea', component: FormlyFieldTextArea, wrappers: [] }],
     }),
   ],
   providers: [],
