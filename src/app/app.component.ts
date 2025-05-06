@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { AppService } from './services/app.service'
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
     { value: 'es', viewValue: 'Es' },
   ]
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, private _appService: AppService) {}
 
   form = new FormGroup({})
   model: any = {}
@@ -33,7 +34,31 @@ export class AppComponent implements OnInit {
           props: { label: 'Reporter' },
           fieldGroup: [
             //Configura aqui la seccion 1
-          ],
+            {
+              key: 'EmployeeNumber',
+              type: 'input',
+              props: {
+                label: 'Team members',
+                required: true,
+                options: []
+              }
+            },
+            {
+              key: 'rol',
+              type: 'select',
+              props: {
+                label: 'Rol',
+                required: true,
+                options: [{ value: 'CA', label: "a" }]
+              },
+              expressions: {
+                'props.options': (field: FormlyFieldConfig) => {
+                  return field.options?.formState.roles;
+                }
+              }
+            }
+
+          ]
         },
         {
           props: { label: 'Detail' },
@@ -66,6 +91,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this._getIsScibGlobal()
     this._printFormValues()
+    this._appService.getRoles().subscribe(value => {
+      this.options.formState.roles = value.map((rol: any) => ({ value: rol, label: rol }));
+    })
+
+
+
   }
 
   reset() {

@@ -12,6 +12,7 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatSelectModule } from '@angular/material/select'
+import { AppService } from './services/app.service'
 
 @NgModule({
   declarations: [AppComponent, FormlyFieldStepper],
@@ -36,7 +37,7 @@ import { MatSelectModule } from '@angular/material/select'
       types: [{ name: 'stepper', component: FormlyFieldStepper, wrappers: [] }],
     }),
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
